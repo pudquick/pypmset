@@ -20,6 +20,8 @@ def IOPMAssertionCreateWithName(assert_name, assert_level, assert_msg):
         assert_level, p_assert_msg, byref(assertID))
     return (errcode, assertID)
 
+IOPMAssertionRelease = libIOKit.IOPMAssertionRelease
+
 kIOPMAssertionTypeNoIdleSleep = "NoIdleSleepAssertion"
 kIOPMAssertionLevelOn = 255
 reason = "python would like the computer to not idle sleep"
@@ -29,4 +31,4 @@ errcode, assertID = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
     kIOPMAssertionLevelOn, reason)
 
 # Let it go again
-errcode = libIOKit.IOPMAssertionRelease(assertID)
+errcode = IOPMAssertionRelease(assertID)
