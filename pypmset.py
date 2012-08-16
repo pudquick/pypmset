@@ -1,6 +1,6 @@
 from ctypes import c_uint32, cdll, c_int, c_void_p, POINTER, byref
 from ctypes.util import find_library
-from CoreFoundation import CFStringCreateWithCString, CFRelease
+from CoreFoundation import CFStringCreateWithCString, CFRelease, kCFStringEncodingASCII
 from objc import pyobjc_id
 
 libIOKit = cdll.LoadLibrary(find_library("/System/Library/Frameworks/IOKit.framework/IOKit"))
@@ -10,7 +10,7 @@ libIOKit.IOPMAssertionRelease.argtypes = [ c_uint32 ]
 libIOKit.IOPMAssertionRelease.restype = c_int
 
 def CFSTR(py_string):
-    return CFStringCreateWithCString(None, py_string, 0L)
+    return CFStringCreateWithCString(None, py_string, kCFStringEncodingASCII)
 
 def raw_ptr(pyobjc_string):
     return pyobjc_id(pyobjc_string.nsstring())
