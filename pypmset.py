@@ -30,5 +30,8 @@ reason = "python would like the computer to not idle sleep"
 errcode, assertID = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep,
     kIOPMAssertionLevelOn, reason)
 
+# prove it to yourself with this on the Terminal: pmset -g assertions
+
+
 # Let it go again
 errcode = IOPMAssertionRelease(assertID)
